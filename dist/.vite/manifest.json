@@ -1,0 +1,11 @@
+{
+  "src/v2/kanji-memory-card.tsx": {
+    "file": "assets/kanji-memory-card-CFaYRkZc.js",
+    "name": "kanji-memory-card",
+    "src": "src/v2/kanji-memory-card.tsx",
+    "isEntry": true,
+    "css": [
+      "assets/kanji-memory-card-BMPIFMPY.css"
+    ]
+  }
+}

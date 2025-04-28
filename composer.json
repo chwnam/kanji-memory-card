@@ -1,0 +1,37 @@
+{
+    "name": "chwnam/kmc",
+    "description": "Kanji memory card",
+    "homepage": "https://github.com/chwnam/kanji-memory-card",
+    "type": "wordpress-plugin",
+    "license": "GPL-2.0-or-later",
+    "autoload": {
+        "psr-4": {
+            "Chwnam\\KanjiMemoryCard\\": "inc/"
+        },
+        "files": [
+            "inc/functions.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+        }
+    },
+    "authors": [
+    ],
+    "require": {
+        "php": ">=8.0",
+        "bojaghi/continy": "^1.1",
+        "bojaghi/custom-posts": "^1.0",
+        "bojaghi/custom-taxonomies": "^1.0",
+        "bojaghi/template": "^1.0",
+        "bojaghi/admin-ajax": "^1.0",
+        "bojaghi/custom-tables": "^1.0",
+        "bojaghi/vite-scripts": "^1.1",
+        "bojaghi/clean-pages": "^1.0",
+        "bojaghi/fields": "^1.0",
+        "bojaghi/helper": "^1.2"
+    },
+    "scripts": {
+    },
+    "version": "0.0.0"
+}
