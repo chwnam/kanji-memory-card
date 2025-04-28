@@ -51,7 +51,7 @@ return [
 'publicly_queryable'    => false,
 'hierarchical'          => false,
 'show_ui'               => true,
-'show_in_menu'          => true,
+'show_in_menu'          => false,
 'show_in_nav_menus'     => false,
 'show_in_rest'          => false,
 'rest_base'             => 'kms_kanji_level',

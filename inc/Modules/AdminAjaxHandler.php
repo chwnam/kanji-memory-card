@@ -27,8 +27,8 @@ class AdminAjaxHandler implements Module
         // random question
         // random answer
         $data = [
-            'question' => 'question-' . wp_rand(1, 1000),
-            'answer'   => 'answer-' . wp_rand(1, 1000),
+            'question' => $q->posts[0]->post_title,
+            'answer'   => wpautop($q->posts[0]->post_content),
         ];
 
         wp_send_json_success($data);

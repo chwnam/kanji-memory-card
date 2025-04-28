@@ -42,6 +42,24 @@ namespace {
         }
     }
 
+    if (!function_exists('kmcCall')) {
+        /**
+         * @template T
+         * @param class-string<T> $id
+         * @param string          $method
+         *
+         * @return mixed
+         */
+        function kmcCall(string $id, string $method): mixed
+        {
+            $instance = kmcGet($id);
+            if ($instance && method_exists($instance, $method) && is_callable([$instance, $method])) {
+                return $instance->$method();
+            }
+            return null;
+        }
+    }
+
     if (!function_exists('kmcTmpl')) {
         function kmcTmpl(): Template
         {

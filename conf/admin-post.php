@@ -1,0 +1,28 @@
+<?php
+
+use Bojaghi\AdminAjax\SubmitBase;
+
+// No direct access
+if (!defined('ABSPATH')) {
+    exit;
+}
+
+return [
+    /**
+     * We are not going to use 'Content-Type: application/json', so that we can safely disable this feature.
+     */
+    'checkContentType' => false,
+
+    /**
+     * Action tester
+     *
+     * @uses AdminPostHandler::importCards()
+     */
+    [
+        'kmc_import_cards',     // action
+        'kmc/post@importCards', // callback
+        SubmitBase::ONLY_PRIV,  // logged-in user only
+        '_kmc_nonce',           // automatic nonce check
+        // default priority
+    ],
+];

@@ -23,6 +23,10 @@ return [
             dirname(KMC_MAIN) . '/conf/admin-ajax.php', // configuration
             $continy,                                   // container interface
         ],
+        'bojaghi/adminPost'   => fn(Continy $continy) => [
+            dirname(KMC_MAIN) . '/conf/admin-post.php', // configuration
+            $continy,                                   // container interface
+        ],
         'bojaghi/customPosts' => "$conf/custom-posts.php",
         'bojaghi/customTax'   => "$conf/custom-tax.php",
         'bojaghi/template'    => [
@@ -35,18 +39,22 @@ return [
     'bindings'  => [
         // Bojaghi
         'bojaghi/adminAjax'   => Bojaghi\AdminAjax\AdminAjax::class,
+        'bojaghi/adminPost'   => Bojaghi\AdminAjax\AdminPost::class,
         'bojaghi/customPosts' => Bojaghi\CustomPosts\CustomPosts::class,
         'bojaghi/customTax'   => Bojaghi\Tax\CustomTaxonomies::class,
         'bojaghi/template'    => Bojaghi\Template\Template::class,
         // Plugin
+        'kmc/adminMenu'       => Modules\AdminMenu::class,
         'kmc/activation'      => Modules\Activation::class,
         'kmc/ajax'            => Modules\AdminAjaxHandler::class,
+        'kmc/post'            => Modules\AdminPostHandler::class,
         'kmc/adminEdit'       => Modules\AdminEdit::class,
         'kmc/shortcodes'      => Modules\ShortcodesHandler::class,
     ],
     'modules'   => [
         '_'    => [
             'bojaghi/adminAjax',
+            'bojaghi/adminPost',
             'kmc/activation',
             'kmc/shortcodes',
         ],
@@ -56,7 +64,8 @@ return [
                 'bojaghi/customPosts',
                 'bojaghi/customTax',
                 // Plugin-side
-                'kmc/adminEdit'
+                'kmc/adminEdit',
+                'kmc/adminMenu',
             ],
         ],
     ],
