@@ -1,0 +1,92 @@
+<?php
+
+// No direct access
+if (!defined('ABSPATH')) {
+    exit;
+}
+
+return [
+    // Begin: kms_kanji_card
+    [
+        // post_type
+        KMC_CPT_CARD,
+        // arguments
+        [
+            'label'                           => __('Kanji Cards', 'kanji-memory-card'),
+            'labels'                          => [
+                //'name'                     => _x('', 'ttp_threads label', 'kanji-memory-card'),
+                //'singular_name'            => _x('', 'ttp_threads label', 'kanji-memory-card'),
+                //'add_new'                  => _x('', 'ttp_threads label', 'kanji-memory-card'),
+                //'add_new_item'             => _x('', 'ttp_threads label', 'kanji-memory-card'),
+                // 'edit_item'                => _x('View Threads Post', 'ttp_threads label', 'kanji-memory-card'),
+                //'new_item'                 => _x('', 'ttp_threads label', 'kanji-memory-card'),
+                //'view_item'                => _x('', 'ttp_threads label', 'kanji-memory-card'),
+                //'view_items'               => _x('', 'ttp_threads label', 'kanji-memory-card'),
+                //'search_items'             => _x('', 'ttp_threads label', 'kanji-memory-card'),
+                //'not_found'                => _x('', 'ttp_threads label', 'kanji-memory-card'),
+                //'not_found_in_trash'       => _x('', 'ttp_threads label', 'kanji-memory-card'),
+                //'parent_item_colon'        => _x('', 'ttp_threads label', 'kanji-memory-card'),
+                //'all_items'                => _x('', 'ttp_threads label', 'kanji-memory-card'),
+                //'archives'                 => _x('', 'ttp_threads label', 'kanji-memory-card'),
+                //'attributes'               => _x('', 'ttp_threads label', 'kanji-memory-card'),
+                //'insert_into_item'         => _x('', 'ttp_threads label', 'kanji-memory-card'),
+                //'uploaded_to_this_item'    => _x('', 'ttp_threads label', 'kanji-memory-card'),
+                //'featured_image'           => _x('', 'ttp_threads label', 'kanji-memory-card'),
+                //'set_featured_image'       => _x('', 'ttp_threads label', 'kanji-memory-card'),
+                //'remove_featured_image'    => _x('', 'ttp_threads label', 'kanji-memory-card'),
+                //'use_featured_image'       => _x('', 'ttp_threads label', 'kanji-memory-card'),
+                //'menu_name'                => _x('', 'ttp_threads label', 'kanji-memory-card'),
+                //'filter_items_list'        => _x('', 'ttp_threads label', 'kanji-memory-card'),
+                //'filter_by_date'           => _x('', 'ttp_threads label', 'kanji-memory-card'),
+                //'items_list_navigation'    => _x('', 'ttp_threads label', 'kanji-memory-card'),
+                //'items_list'               => _x('', 'ttp_threads label', 'kanji-memory-card'),
+                //'item_published'           => _x('', 'ttp_threads label', 'kanji-memory-card'),
+                //'item_published_privately' => _x('', 'ttp_threads label', 'kanji-memory-card'),
+                //'item_reverted_to_draft'   => _x('', 'ttp_threads label', 'kanji-memory-card'),
+                //'item_trashed'             => _x('', 'ttp_threads label', 'kanji-memory-card'),
+                //'item_scheduled'           => _x('', 'ttp_threads label', 'kanji-memory-card'),
+                //'item_updated'             => _x('', 'ttp_threads label', 'kanji-memory-card'),
+                //'item_link'                => _x('', 'ttp_threads label', 'kanji-memory-card'),
+                //'item_link_description'    => _x('', 'ttp_threads label', 'kanji-memory-card'),
+            ],
+            'description'                     => _x('Kanji card', 'Description of kms_kanji_card', 'kanji-memory-card'),
+            'public'                          => false,
+            'hierarchical'                    => false,
+            'exclude_from_search'             => true,
+            'publicly_queryable'              => false,
+            'show_ui'                         => true,
+            'show_in_menu'                    => true,
+            'show_in_nav_menus'               => false,
+            'show_in_admin_bar'               => false,
+            'show_in_rest'                    => false,
+            'rest_base'                       => 'kms_kanji_card',
+            'rest_namespace'                  => 'wp/v2',
+            'rest_controller_class'           => \WP_REST_Posts_Controller::class,
+            'autosave_rest_controller_class'  => \WP_REST_Autosaves_Controller::class,
+            'revisions_rest_controller_class' => \WP_Rest_Revisions_Controller::class,
+            'late_route_registration'         => false,
+            'menu_position'                   => null,
+            'menu_icon'                       => null,
+            'capability_type'                 => 'post',
+            'capabilities'                    => [],
+            'map_meta_cap'                    => true,
+            'supports'                        => ['title', 'editor'],
+            'register_meta_box_cb'            => null,
+            'taxonomies'                      => [],
+            'has_archive'                     => false,
+            'rewrite'                         => [
+                'slug'       => 'kms-kanji-card',
+                'with_front' => false,
+                'feeds'      => false,
+                'pages'      => false,
+                'ep_mask'    => EP_PERMALINK,
+            ],
+            'query_var'                       => false,
+            'can_export'                      => true,
+            'delete_with_user'                => null,
+            'template'                        => [],
+            'template_lock'                   => false,
+        ],
+    ],
+    // End: kms_kanji_card
+];
