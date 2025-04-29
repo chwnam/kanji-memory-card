@@ -15,7 +15,8 @@
 }
 
 .kanji-memory-card__question {
-    min-height: 4em;
+    box-sizing: border-box;
+    height: 140px;
     padding: 0.5em;
 }
 
@@ -26,9 +27,11 @@
 }
 
 .kanji-memory-card__answer {
+    box-sizing: border-box;
     font-size: 1.2em;
-    min-height: 4em;
+    height: 140px;
     padding: 0.5em;
+    text-align: center;
 }
 
 .kanji-memory-card__answer p {
@@ -36,7 +39,7 @@
 }
 
 .kanji-memory-card__buttons {
-    border-bottom: 1px solid var(--wp--preset--color--contrast);
+    border-top: 1px solid var(--wp--preset--color--contrast);
     display: flex;
     justify-content: space-between;
     padding: 1em 4em;
