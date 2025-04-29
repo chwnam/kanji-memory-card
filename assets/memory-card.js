@@ -84,13 +84,13 @@ jQuery(function ($) {
             getNext()
         }).trigger('click')
 
-        show.on('mousedown touchend', function () {
+        show.on('mousedown touchstart', function () {
             // show answer
             question.addClass('hidden')
             answer.removeClass('hidden')
         })
 
-        show.on('mouseup touchstart', function () {
+        show.on('mouseup touchend', function () {
             // hide answer
             question.removeClass('hidden')
             answer.addClass('hidden')
