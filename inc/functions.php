@@ -54,7 +54,10 @@ namespace {
         {
             $instance = kmcGet($id);
             if ($instance && method_exists($instance, $method) && is_callable([$instance, $method])) {
-                return $instance->$method();
+                try {
+                    return kmc()->call([$instance, $method]);
+                } catch (ContinyException $e) {
+                }
             }
             return null;
         }
