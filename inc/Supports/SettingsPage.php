@@ -52,19 +52,32 @@ class SettingsPage
                 'suppress_filters' => true,
             ]);
 
+            [$kanji, $hiragana, $korean] = $item;
+
+            $filtered = wp_slash(
+                json_encode(
+                    compact('kanji', 'hiragana', 'korean'),
+                    JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES,
+                ),
+            );
+
+            $post = [
+                'post_content'          => '',
+                'post_content_filtered' => $filtered,
+                'post_name'             => implode('-', $item),
+                'post_status'           => 'publish',
+                'post_type'             => KMC_CPT_CARD,
+                'post_title'            => $korean,
+            ];
+
             if (1 === $query->post_count) {
-                continue;
+                // Update
+                $post['ID'] = $query->post[0]->ID;
+                wp_update_post($post);
+            } else {
+                // Insert
+                wp_insert_post($post);
             }
-
-            [$japanese, $hira, $korean] = $item;
-
-            wp_insert_post([
-                'post_status'  => 'publish',
-                'post_type'    => KMC_CPT_CARD,
-                'post_title'   => $korean,
-                'post_name'    => implode('-', $item),
-                'post_content' => "$japanese | $hira\n: $korean",
-            ]);
         }
 
         wp_redirect(wp_get_referer());
