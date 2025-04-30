@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fa36ed9a9b5e32059daa10e191ad1c99",
+    "content-hash": "b47763932c760554c66a00be620014b3",
     "packages": [
         {
             "name": "bojaghi/admin-ajax",
@@ -370,7 +370,48 @@
             "time": "2021-11-05T16:47:00+00:00"
         }
     ],
-    "packages-dev": [],
+    "packages-dev": [
+        {
+            "name": "bojaghi/vite-scripts",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bojaghi/vite-scripts.git",
+                "reference": "9f3b4f4b782d73b939f64ebf86bef1adddd2bf8d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bojaghi/vite-scripts/zipball/9f3b4f4b782d73b939f64ebf86bef1adddd2bf8d",
+                "reference": "9f3b4f4b782d73b939f64ebf86bef1adddd2bf8d",
+                "shasum": ""
+            },
+            "require": {
+                "bojaghi/helper": "^1.1",
+                "php": ">=8.0"
+            },
+            "require-dev": {
+                "bojaghi/wp-tests": "^1.0",
+                "phpunit/phpunit": "^9",
+                "yoast/phpunit-polyfills": "^3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Bojaghi\\ViteScripts\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "homepage": "https://github.com/bojaghi/vite-scripts",
+            "support": {
+                "issues": "https://github.com/bojaghi/vite-scripts/issues",
+                "source": "https://github.com/bojaghi/vite-scripts/tree/1.1.0"
+            },
+            "time": "2025-01-14T15:56:58+00:00"
+        }
+    ],
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {},

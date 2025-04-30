@@ -35,6 +35,11 @@ return [
                 'scopes' => [dirname(KMC_MAIN) . '/inc/templates'],
             ]
         ],
+        'bojaghi/vite'        => [[
+            'distBaseUrl'  => plugin_dir_url(KMC_MAIN) . 'dist',
+            'isProd'       => 'production' === wp_get_environment_type(),
+            'manifestPath' => plugin_dir_path(KMC_MAIN) . 'dist/.vite/manifest.json'
+        ]],
     ],
     'bindings'  => [
         // Bojaghi
@@ -43,12 +48,13 @@ return [
         'bojaghi/customPosts' => Bojaghi\CustomPosts\CustomPosts::class,
         'bojaghi/customTax'   => Bojaghi\Tax\CustomTaxonomies::class,
         'bojaghi/template'    => Bojaghi\Template\Template::class,
+        'bojaghi/vite'        => Bojaghi\ViteScripts\ViteScript::class,
         // Plugin
         'kmc/adminMenu'       => Modules\AdminMenu::class,
         'kmc/activation'      => Modules\Activation::class,
         'kmc/ajax'            => Modules\AdminAjaxHandler::class,
-        'kmc/post'            => Modules\AdminPostHandler::class,
         'kmc/adminEdit'       => Modules\AdminEdit::class,
+        'kmc/post'            => Modules\AdminPostHandler::class,
         'kmc/shortcodes'      => Modules\ShortcodesHandler::class,
     ],
     'modules'   => [

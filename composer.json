@@ -28,5 +28,8 @@
     },
     "scripts": {
     },
-    "version": "0.0.0"
+    "version": "0.0.0",
+    "require-dev": {
+        "bojaghi/vite-scripts": "^1.1"
+    }
 }
