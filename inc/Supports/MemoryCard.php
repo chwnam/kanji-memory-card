@@ -3,6 +3,7 @@
 namespace Chwnam\KanjiMemoryCard\Supports;
 
 use Bojaghi\Contract\Support;
+use Bojaghi\ViteScripts\ViteScript;
 
 class MemoryCard implements Support
 {
@@ -10,7 +11,7 @@ class MemoryCard implements Support
     {
     }
 
-    public function render(): string
+    public function render(ViteScript $vs): string
     {
         wp_enqueue_script(
             'kmc-memory-card',
@@ -49,6 +50,24 @@ class MemoryCard implements Support
             'answer'   => 'answer',
         ];
 
-        return kmcTmpl()->template('memory-card', $context);
+        $output = kmcTmpl()->template('memory-card', $context);
+
+        // Vite-based output
+        $output .= kmcTmpl()->template(
+            'react-root',
+            [
+                'id'            => 'kmc-memory-card',
+                'class'         => 'kmc kmc-memory-card',
+                'inner_content' => '이 텍스트가 보인다면 리액트 코드가 제대로 실행되지 않았기 때문입니다.',
+            ],
+        );
+
+        $vs->add('kmc-kanji-memory-card', 'src/kanji-memory-card.tsx')
+           ->vars('kmcKanjiMemoryCard', [
+               'varName' => 'value',
+           ])
+        ;
+
+        return $output;
     }
 }
