@@ -18,6 +18,11 @@ class ShortcodesHandler implements Module
             return '';
         }
 
+        if (!is_user_logged_in()) {
+            $loginUrl = wp_login_url(get_permalink());
+            return "<script>window.location.href = '$loginUrl';</script>";
+        }
+
         return kmcCall(MemoryCard::class, 'render');
     }
 }
