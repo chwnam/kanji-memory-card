@@ -35,6 +35,10 @@ export default function MemoryCard(props: Props) {
         return getCard(ajaxUrl, getCardAction)
     }, [cards, index])
 
+    const isAvailable = useCallback(() => {
+        return cards.length > 0 && -1 < index && index < cards.length
+    }, [cards, index])
+
     useEffect(() => {
         if (!cards.length) {
             fetchNext().then((card) => {
@@ -45,61 +49,77 @@ export default function MemoryCard(props: Props) {
     }, [])
 
     return (
-        <div className="card-container border-2 border-black rounded-sm">
-            <div className="card-top leading-[22px] flex justify-between items-center">
-                <span className="ms-2 mt-1 text-[0.75em]">{index + 1}/{cards.length}</span>
-                {(cards.length > 0 && -1 < index && index < cards.length) && (
-                    <span className="me-2 mt-1 text-[0.75em]">#{cards[index].id}</span>
-                )}
-            </div>
-            {(cards.length > 0 && -1 < index && index < cards.length) ? (
-                <>
-                    <CardContent className={cn('card-question', flip && 'hidden')}>
-                        <Question text={cards[index].question} />
-                    </CardContent>
-                    <CardContent className={cn('card-answer', flip || 'hidden')}>
-                        <Answer card={cards[index]} />
-                    </CardContent>
-                </>
-            ) : (
-                <CardContent></CardContent>
-            )}
-            <section className="card-bottom border-t border-black">
-                <div className="card-buttons flex justify-between mx-28 max-[520px]:mx-12 max-[420px]:mx-4 max-[420px]:mx-4 mx-12 my-4">
-                    <Button
-                        disabled={index <= 0}
-                        onClick={() => {
-                            if (index > 0) {
-                                setIndex(index - 1)
-                            }
-                        }}
-                    >
-                        이전
-                    </Button>
-                    <Button
-                        onMouseDown={() => setFlip(true)}
-                        onMouseUp={() => setFlip(false)}
-                        onTouchStart={() => setFlip(true)}
-                        onTouchEnd={() => setFlip(false)}
-                    >
-                        정답 토글
-                    </Button>
-                    <Button
-                        onClick={async () => {
-                            if (-1 < index && index < cards.length - 1) {
-                                setIndex(index + 1)
-                            } else {
-                                fetchNext().then((card) => {
-                                    setCards([...cards, card])
-                                    setIndex(cards.length)
-                                })
-                            }
-                        }}
-                    >
-                        다음
-                    </Button>
+        <div className="memory-card-app">
+            <div className="card-container border-2 border-black rounded-sm">
+                <div
+                    className={cn(
+                        'card-top',
+                        'leading-[22px] pb-1',
+                        'flex justify-between items-center',
+                        'border-b border-black',
+                    )}
+                >
+                    <span className="ms-2 mt-1 text-[0.75em]">{index + 1}/{cards.length}</span>
+                    {isAvailable() && (<span className="me-2 mt-1 text-[0.75em]">#{cards[index].id}</span>)}
                 </div>
-            </section>
+                {isAvailable() ? (
+                    <>
+                        <CardContent className={cn('card-question', flip && 'hidden')}>
+                            <Question text={cards[index].question} />
+                        </CardContent>
+                        <CardContent className={cn('card-answer', flip || 'hidden')}>
+                            <Answer card={cards[index]} />
+                        </CardContent>
+                    </>
+                ) : (
+                    <CardContent></CardContent>
+                )}
+                <section className="card-bottom border-t border-black">
+                    <div className="card-buttons flex justify-between mx-28 max-[520px]:mx-12 max-[420px]:mx-4 max-[420px]:mx-4 mx-12 my-4">
+                        <Button
+                            disabled={index <= 0}
+                            onClick={() => {
+                                if (index > 0) {
+                                    setIndex(index - 1)
+                                }
+                            }}
+                        >
+                            이전
+                        </Button>
+                        <Button
+                            onMouseDown={() => setFlip(true)}
+                            onMouseUp={() => setFlip(false)}
+                            onTouchStart={() => setFlip(true)}
+                            onTouchEnd={() => setFlip(false)}
+                        >
+                            정답 토글
+                        </Button>
+                        <Button
+                            onClick={async () => {
+                                if (-1 < index && index < cards.length - 1) {
+                                    setIndex(index + 1)
+                                } else {
+                                    fetchNext().then((card) => {
+                                        setCards([...cards, card])
+                                        setIndex(cards.length)
+                                    })
+                                }
+                            }}
+                        >
+                            다음
+                        </Button>
+                    </div>
+                </section>
+            </div>
+            {isAvailable() && (
+                <div className="fluency-container mt-8 text-center">
+                    <h5>이 단어를 맞추셨나요?</h5>
+                    <div>
+                        <span>아니오</span>
+                        <span>예</span>
+                    </div>
+                </div>
+            )}
         </div>
     )
 }
