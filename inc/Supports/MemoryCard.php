@@ -14,10 +14,16 @@ class MemoryCard implements Support
 
     public function getCard(): void
     {
+        $exclude = array_unique(array_filter(array_map(
+            'absint',
+            explode(',', $_REQUEST['exclude'] ?? ''),
+        )));
+
         $q = new WP_Query(
             [
                 'post_type'        => KMC_CPT_CARD,
                 'post_status'      => 'publish',
+                'post__not_in'     => $exclude,
                 'orderby'          => 'rand',
                 'no_found_rows'    => true,
                 'posts_per_page '  => 1,
@@ -60,17 +66,30 @@ class MemoryCard implements Support
            ->vars('kmcMemoryCard', [
                'ajaxUrl' => admin_url('admin-ajax.php'),
                'actions' => [
-                   'getCard' => [
+                   'getCard'       => [
                        'action' => 'kmc_get_card',
                        'nonce'  => wp_create_nonce('kmc_get_card')
                    ],
+                   'setQuizResult' => [
+                       'action' => 'kmc_set_quiz_result',
+                       'nonce'  => wp_create_nonce('kmc_set_quiz_result'),
+                   ]
                ],
                'initial' => [
-                   'cards' => [],
+                   'cards'   => [],
+                   'results' => [],
                ]
            ])
         ;
 
         return $output;
+    }
+
+    public function setQuizResult(): void
+    {
+        $id     = absint($_REQUEST['id'] ?? 0);
+        $result = filter_var($_REQUEST['result'], FILTER_VALIDATE_BOOL, FILTER_NULL_ON_FAILURE);;
+
+        wp_send_json_success([$id, $result]);
     }
 }

@@ -8,6 +8,7 @@
     font-size: var(--wp--preset--font-size--small);
     padding: 0.5em 1em;
     text-decoration: none;
+    user-select: none;
 
     &[disabled] {
         background-color: var(--wp--preset--color--cyan-bluish-gray);
@@ -16,4 +17,23 @@
     }
 }
 
+.button.fluency-button {
+    background-color: white;
+    border-color: var(--wp--preset--color--contrast);
+    border-width: 1px;
+    border-radius: 2px;
+    color: var(--wp--preset--color--contrast);
 
+    &:not([disabled]):hover {
+        background-color: var(--wp--preset--color--accent-4);
+        color: var(--wp--preset--color--base);
+        font-weight: bold;
+    }
+
+    &:focus {
+        background-color: var(--wp--preset--color--contrast);
+        color: var(--wp--preset--color--base);
+        font-weight: bold;
+        outline: none;
+    }
+}

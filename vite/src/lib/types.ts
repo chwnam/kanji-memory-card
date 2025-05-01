@@ -11,7 +11,10 @@ type Card = {
     korean: string
 }
 
+type Result = boolean | null
+
 export type {
     Action,
     Card,
+    Result,
 }

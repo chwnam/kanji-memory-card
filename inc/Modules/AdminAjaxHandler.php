@@ -16,4 +16,13 @@ class AdminAjaxHandler implements Module
     {
         kmcCall(MemoryCard::class, 'getCard');
     }
+
+    /**
+     * @return void
+     * @uses MemoryCard::setQuizResult()
+     */
+    public function setQuizResult(): void
+    {
+        kmcCall(MemoryCard::class, 'setQuizResult');
+    }
 }
