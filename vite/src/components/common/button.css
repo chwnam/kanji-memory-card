@@ -1,0 +1,19 @@
+.button {
+    background-color: var(--wp--preset--color--contrast);
+    border-width: 0;
+    border-radius: 6px;
+    cursor: pointer;
+    color: var(--wp--preset--color--base);
+    font-family: inherit;
+    font-size: var(--wp--preset--font-size--small);
+    padding: 0.5em 1em;
+    text-decoration: none;
+
+    &[disabled] {
+        background-color: var(--wp--preset--color--cyan-bluish-gray);
+        color: var(--wp--preset--color--accent-3);
+        cursor: not-allowed;
+    }
+}
+
+

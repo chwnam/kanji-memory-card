@@ -16,11 +16,11 @@ return [
     /**
      * Action tester
      *
-     * @uses AdminAjaxHandler::getKanji()
+     * @uses AdminAjaxHandler::getCard()
      */
     [
-        'kmc_get_kanji',         // action
-        'kmc/ajax@getKanji',     // callback
+        'kmc_get_card',          // action
+        'kmc/ajax@getCard',      // callback
         SubmitBase::ALL_GRANTED, // logged-in user only
         'nonce',                 // automatic nonce check
         // default priority

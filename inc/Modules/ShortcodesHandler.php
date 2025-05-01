@@ -14,6 +14,10 @@ class ShortcodesHandler implements Module
 
     public function handleKanjiMemoryCard(): string
     {
+        if (is_admin()) {
+            return '';
+        }
+
         return kmcCall(MemoryCard::class, 'render');
     }
 }

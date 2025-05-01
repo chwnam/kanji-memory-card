@@ -1,5 +1,6 @@
 import {defineConfig} from 'vite'
 import react from '@vitejs/plugin-react-swc'
+import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -12,12 +13,15 @@ export default defineConfig({
         outDir: '../dist',
         rollupOptions: {
             input: [
-                'src/index.tsx',
+                'src/kanji-memory-card.tsx',
             ],
         },
     },
     publicDir: false,
-    plugins: [react()],
+    plugins: [
+        react(),
+        tailwindcss(),
+    ],
     server: {
         cors: {
             origin: '*',

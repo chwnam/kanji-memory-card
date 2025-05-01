@@ -4,6 +4,7 @@ namespace Chwnam\KanjiMemoryCard\Supports;
 
 use Bojaghi\Contract\Support;
 use Bojaghi\ViteScripts\ViteScript;
+use WP_Query;
 
 class MemoryCard implements Support
 {
@@ -11,49 +12,42 @@ class MemoryCard implements Support
     {
     }
 
-    public function render(ViteScript $vs): string
+    public function getCard(): void
     {
-        wp_enqueue_script(
-            'kmc-memory-card',
-            plugins_url('assets/memory-card.js', KMC_MAIN),
-            ['jquery'],
-            defined('WP_DEBUG') && WP_DEBUG ? time() : KMC_VERSION,
+        $q = new WP_Query(
             [
-                'strategy'  => 'defer',
-                'in_footer' => true,
+                'post_type'        => KMC_CPT_CARD,
+                'post_status'      => 'publish',
+                'orderby'          => 'rand',
+                'no_found_rows'    => true,
+                'posts_per_page '  => 1,
+                'suppress_filters' => true,
             ],
         );
 
-        wp_localize_script(
-            'kmc-memory-card',
-            'kmcMemoryCard',
-            [
-                'ajax_url' => admin_url('admin-ajax.php'),
-                'actions'  => [
-                    'kmc_get_kanji' => [
-                        'action' => 'kmc_get_kanji',
-                        'nonce'  => wp_create_nonce('kmc_get_kanji')
-                    ],
-                ]
-            ],
-        );
+        if (!$q->post_count) {
+            wp_send_json_error('No cards.');
+        }
 
-        wp_enqueue_style(
-            'kmc-memory-card',
-            plugins_url('assets/memory-card.css', KMC_MAIN),
-            [],
-            defined('WP_DEBUG') && WP_DEBUG ? time() : KMC_VERSION,
-        );
+        $content = json_decode($q->posts[0]->post_content_filtered, true) ?: [];
 
-        $context = [
-            'question' => 'question',
-            'answer'   => 'answer',
+        // random question
+        // random answer
+        $data = [
+            'id'       => $q->posts[0]->ID,
+            'question' => $q->posts[0]->post_title,
+            'kanji'    => $content['kanji'] ?? '',
+            'hiragana' => $content['hiragana'] ?? '',
+            'korean'   => $content['korean'] ?? '',
         ];
 
-        $output = kmcTmpl()->template('memory-card', $context);
+        wp_send_json_success($data);
+    }
 
+    public function render(ViteScript $vs): string
+    {
         // Vite-based output
-        $output .= kmcTmpl()->template(
+        $output = kmcTmpl()->template(
             'react-root',
             [
                 'id'            => 'kmc-memory-card',
@@ -63,8 +57,17 @@ class MemoryCard implements Support
         );
 
         $vs->add('kmc-kanji-memory-card', 'src/kanji-memory-card.tsx')
-           ->vars('kmcKanjiMemoryCard', [
-               'varName' => 'value',
+           ->vars('kmcMemoryCard', [
+               'ajaxUrl' => admin_url('admin-ajax.php'),
+               'actions' => [
+                   'getCard' => [
+                       'action' => 'kmc_get_card',
+                       'nonce'  => wp_create_nonce('kmc_get_card')
+                   ],
+               ],
+               'initial' => [
+                   'cards' => [],
+               ]
            ])
         ;
 

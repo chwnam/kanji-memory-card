@@ -72,7 +72,7 @@ class SettingsPage
 
             if (1 === $query->post_count) {
                 // Update
-                $post['ID'] = $query->post[0]->ID;
+                $post['ID'] = $query->posts[0]->ID;
                 wp_update_post($post);
             } else {
                 // Insert
