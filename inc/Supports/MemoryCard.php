@@ -4,6 +4,7 @@ namespace Chwnam\KanjiMemoryCard\Supports;
 
 use Bojaghi\Contract\Support;
 use Bojaghi\ViteScripts\ViteScript;
+use WP_Error;
 use WP_Query;
 
 class MemoryCard implements Support
@@ -48,6 +49,83 @@ class MemoryCard implements Support
         ];
 
         wp_send_json_success($data);
+    }
+
+    /**
+     * Import kanji card from CSV file
+     *
+     * @param string $fileName
+     *
+     * @return int|WP_Error Read count or WP_Error object.
+     */
+    public function importCards(string $fileName): int|WP_Error
+    {
+        $fp = fopen($fileName, 'r');
+        if (!$fp) {
+            return new WP_Error('error', 'Cannot open file.');
+        }
+
+        $items = [];
+
+        while (($row = fgetcsv($fp))) {
+            if (!count($row)) {
+                continue;
+            }
+            $row = array_map('trim', $row);
+            if ($row[0] && $row[1] && $row[2] && $row[3]) {
+                $items[] = $row;
+            }
+        }
+
+        fclose($fp);
+
+        foreach ($items as $item) {
+            $query = new WP_Query([
+                'post_type'        => KMC_CPT_CARD,
+                'post_status'      => 'publish',
+                'name'             => implode('-', $item),
+                'posts_per_page'   => 1,
+                'no_found_rows'    => true,
+                'suppress_filters' => true,
+            ]);
+
+            [$kanji, $hiragana, $korean, $level] = $item;
+
+            $filtered = wp_slash(
+                json_encode(
+                    compact('kanji', 'hiragana', 'korean'),
+                    JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES,
+                ),
+            );
+
+            $post = [
+                'post_content'          => '',
+                'post_content_filtered' => $filtered,
+                'post_name'             => implode('-', $item),
+                'post_status'           => 'publish',
+                'post_type'             => KMC_CPT_CARD,
+                'post_title'            => $korean,
+            ];
+
+            if (1 === $query->post_count) {
+                // Update
+                $post['ID'] = $query->posts[0]->ID;
+                $postId     = wp_update_post($post);
+            } else {
+                // Insert
+                $postId = wp_insert_post($post);
+            }
+
+            if (is_wp_error($postId)) {
+                return $postId;
+            }
+
+            if (term_exists($level, KMC_TAX_LEVEL)) {
+                wp_set_post_terms($postId, $level, KMC_TAX_LEVEL, true);
+            }
+        }
+
+        return count($items);
     }
 
     public function render(ViteScript $vs): string

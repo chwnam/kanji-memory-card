@@ -47,15 +47,16 @@ namespace {
          * @template T
          * @param class-string<T> $id
          * @param string          $method
+         * @param array           $args
          *
          * @return mixed
          */
-        function kmcCall(string $id, string $method): mixed
+        function kmcCall(string $id, string $method, array $args = []): mixed
         {
             $instance = kmcGet($id);
             if ($instance && method_exists($instance, $method) && is_callable([$instance, $method])) {
                 try {
-                    return kmc()->call([$instance, $method]);
+                    return kmc()->call([$instance, $method], $args);
                 } catch (ContinyException $e) {
                 }
             }
@@ -72,5 +73,19 @@ namespace {
 }
 
 namespace Chwnam\KanjiMemoryCard {
+    function setSetupMessage(array $message): void
+    {
+        set_site_transient(KMC_MESSAGE, $message, HOUR_IN_SECONDS);
+    }
 
+    function getSetupMessage(): array|false
+    {
+        $data = get_site_transient(KMC_MESSAGE);
+
+        if ($data) {
+            delete_site_transient(KMC_MESSAGE);
+        }
+
+        return $data;
+    }
 }

@@ -6,13 +6,13 @@ if (!defined('ABSPATH')) {
 }
 
 return [
-    // Begin: kms_kanji_card
+    // Begin: kmc_kanji_card
     [
         // post_type
         KMC_CPT_CARD,
         // arguments
         [
-            'label'                           => __('Kanji Cards', 'kanji-memory-card'),
+            'label'                           => __('한자 카드', 'kanji-memory-card'),
             'labels'                          => [
                 //'name'                     => _x('', 'ttp_threads label', 'kanji-memory-card'),
                 //'singular_name'            => _x('', 'ttp_threads label', 'kanji-memory-card'),
@@ -49,7 +49,7 @@ return [
                 //'item_link'                => _x('', 'ttp_threads label', 'kanji-memory-card'),
                 //'item_link_description'    => _x('', 'ttp_threads label', 'kanji-memory-card'),
             ],
-            'description'                     => _x('Kanji card', 'Description of kms_kanji_card', 'kanji-memory-card'),
+            'description'                     => _x('한자 카드', 'Description of kmc_kanji_card', 'kanji-memory-card'),
             'public'                          => false,
             'hierarchical'                    => false,
             'exclude_from_search'             => true,
@@ -59,7 +59,7 @@ return [
             'show_in_nav_menus'               => false,
             'show_in_admin_bar'               => false,
             'show_in_rest'                    => false,
-            'rest_base'                       => 'kms_kanji_card',
+            'rest_base'                       => 'kmc_kanji_card',
             'rest_namespace'                  => 'wp/v2',
             'rest_controller_class'           => \WP_REST_Posts_Controller::class,
             'autosave_rest_controller_class'  => \WP_REST_Autosaves_Controller::class,
@@ -70,12 +70,12 @@ return [
             'capability_type'                 => 'post',
             'capabilities'                    => [],
             'map_meta_cap'                    => true,
-            'supports'                        => ['title', 'editor'],
+            'supports'                        => ['title'],
             'register_meta_box_cb'            => null,
             'taxonomies'                      => [],
             'has_archive'                     => false,
             'rewrite'                         => [
-                'slug'       => 'kms-kanji-card',
+                'slug'       => 'kmc-kanji-card',
                 'with_front' => false,
                 'feeds'      => false,
                 'pages'      => false,

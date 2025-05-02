@@ -16,7 +16,8 @@ require __DIR__ . '/vendor/autoload.php';
 
 const KMC_MAIN      = __FILE__;
 const KMC_VERSION   = '0.0.0';
-const KMC_CPT_CARD  = 'kms_kanji_card';
-const KMC_TAX_LEVEL = 'kms_kanji_level';
+const KMC_CPT_CARD  = 'kmc_kanji_card';
+const KMC_TAX_LEVEL = 'kmc_kanji_level';
+const KMC_MESSAGE   = 'kmc_setup_message';
 
 kmc();
