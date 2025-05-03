@@ -25,4 +25,17 @@ return [
         '_kmc_nonce',           // automatic nonce check
         // default priority
     ],
+
+    /**
+     * Purge cards
+     *
+     * @uses AdminPostHandler::purgeCards()
+     */
+    [
+        'kmc_purge_cards',     // action
+        'kmc/post@purgeCards', // callback
+        SubmitBase::ONLY_PRIV,  // logged-in user only
+        '_kmc_nonce',           // automatic nonce check
+        // default priority
+    ],
 ];

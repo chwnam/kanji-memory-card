@@ -65,4 +65,12 @@ class Score implements Support
 
         return (int)$wpdb->get_var($query);
     }
+
+    public function reset(): void
+    {
+        global $wpdb;
+
+        $wpdb->query("TRUNCATE TABLE $this->scores");
+        $wpdb->query("TRUNCATE TABLE $this->history");
+    }
 }
