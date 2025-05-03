@@ -47,11 +47,11 @@ namespace {
          * @template T
          * @param class-string<T> $id
          * @param string          $method
-         * @param array           $args
+         * @param mixed           $args
          *
          * @return mixed
          */
-        function kmcCall(string $id, string $method, array $args = []): mixed
+        function kmcCall(string $id, string $method, mixed $args = false): mixed
         {
             $instance = kmcGet($id);
             if ($instance && method_exists($instance, $method) && is_callable([$instance, $method])) {

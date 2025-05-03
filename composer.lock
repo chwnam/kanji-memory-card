@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5e75e365b50f2786b2bbbe9ff8a33587",
+    "content-hash": "b27ab31c14d0a67f3ed7705c78c1b4fb",
     "packages": [
         {
             "name": "bojaghi/admin-ajax",
@@ -186,16 +186,16 @@
         },
         {
             "name": "bojaghi/custom-tables",
-            "version": "1.0.0",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bojaghi/custom-tables.git",
-                "reference": "9831ac5a7f17ad0d4ece7963f3c465d0f03430a9"
+                "reference": "7ed2ed7c43c6dcbb0acaa48d363ded0ff706355f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bojaghi/custom-tables/zipball/9831ac5a7f17ad0d4ece7963f3c465d0f03430a9",
-                "reference": "9831ac5a7f17ad0d4ece7963f3c465d0f03430a9",
+                "url": "https://api.github.com/repos/bojaghi/custom-tables/zipball/7ed2ed7c43c6dcbb0acaa48d363ded0ff706355f",
+                "reference": "7ed2ed7c43c6dcbb0acaa48d363ded0ff706355f",
                 "shasum": ""
             },
             "require": {
@@ -228,9 +228,9 @@
             "homepage": "https://github.com/bojaghi/custom-tables",
             "support": {
                 "issues": "https://github.com/bojaghi/custom-tables/issues",
-                "source": "https://github.com/bojaghi/custom-tables/tree/1.0.0"
+                "source": "https://github.com/bojaghi/custom-tables/tree/1.0.2"
             },
-            "time": "2025-05-02T22:50:17+00:00"
+            "time": "2025-05-03T20:31:58+00:00"
         },
         {
             "name": "bojaghi/custom-taxonomies",
@@ -365,6 +365,46 @@
             "time": "2024-11-29T22:40:37+00:00"
         },
         {
+            "name": "bojaghi/vite-scripts",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bojaghi/vite-scripts.git",
+                "reference": "9f3b4f4b782d73b939f64ebf86bef1adddd2bf8d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bojaghi/vite-scripts/zipball/9f3b4f4b782d73b939f64ebf86bef1adddd2bf8d",
+                "reference": "9f3b4f4b782d73b939f64ebf86bef1adddd2bf8d",
+                "shasum": ""
+            },
+            "require": {
+                "bojaghi/helper": "^1.1",
+                "php": ">=8.0"
+            },
+            "require-dev": {
+                "bojaghi/wp-tests": "^1.0",
+                "phpunit/phpunit": "^9",
+                "yoast/phpunit-polyfills": "^3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Bojaghi\\ViteScripts\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "homepage": "https://github.com/bojaghi/vite-scripts",
+            "support": {
+                "issues": "https://github.com/bojaghi/vite-scripts/issues",
+                "source": "https://github.com/bojaghi/vite-scripts/tree/1.1.0"
+            },
+            "time": "2025-01-14T15:56:58+00:00"
+        },
+        {
             "name": "psr/container",
             "version": "2.0.2",
             "source": {
@@ -418,48 +458,7 @@
             "time": "2021-11-05T16:47:00+00:00"
         }
     ],
-    "packages-dev": [
-        {
-            "name": "bojaghi/vite-scripts",
-            "version": "1.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/bojaghi/vite-scripts.git",
-                "reference": "9f3b4f4b782d73b939f64ebf86bef1adddd2bf8d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/bojaghi/vite-scripts/zipball/9f3b4f4b782d73b939f64ebf86bef1adddd2bf8d",
-                "reference": "9f3b4f4b782d73b939f64ebf86bef1adddd2bf8d",
-                "shasum": ""
-            },
-            "require": {
-                "bojaghi/helper": "^1.1",
-                "php": ">=8.0"
-            },
-            "require-dev": {
-                "bojaghi/wp-tests": "^1.0",
-                "phpunit/phpunit": "^9",
-                "yoast/phpunit-polyfills": "^3.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Bojaghi\\ViteScripts\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "homepage": "https://github.com/bojaghi/vite-scripts",
-            "support": {
-                "issues": "https://github.com/bojaghi/vite-scripts/issues",
-                "source": "https://github.com/bojaghi/vite-scripts/tree/1.1.0"
-            },
-            "time": "2025-01-14T15:56:58+00:00"
-        }
-    ],
+    "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {},

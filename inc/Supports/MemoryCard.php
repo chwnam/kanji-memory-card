@@ -163,11 +163,17 @@ class MemoryCard implements Support
         return $output;
     }
 
-    public function setQuizResult(): void
+    public function setQuizResult(Score $score): void
     {
-        $id     = absint($_REQUEST['id'] ?? 0);
-        $result = filter_var($_REQUEST['result'], FILTER_VALIDATE_BOOL, FILTER_NULL_ON_FAILURE);;
+        $userId = get_current_user_id();
+        $postId = absint($_REQUEST['id'] ?? 0);
+        $result = filter_var($_REQUEST['result'], FILTER_VALIDATE_BOOL, FILTER_NULL_ON_FAILURE);
 
-        wp_send_json_success([$id, $result]);
+        if (!$userId || !$postId || is_null($result)) {
+            wp_send_json_error('Invalid parameters.');
+        }
+
+        $score->setResult($userId, $postId, $result);
+        wp_send_json_success();
     }
 }
