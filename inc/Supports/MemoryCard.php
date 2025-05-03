@@ -80,16 +80,18 @@ class MemoryCard implements Support
         fclose($fp);
 
         foreach ($items as $item) {
+            [$kanji, $hiragana, $korean, $level] = $item;
+
+            $name = "$kanji-$korean";
+
             $query = new WP_Query([
                 'post_type'        => KMC_CPT_CARD,
                 'post_status'      => 'publish',
-                'name'             => implode('-', $item),
+                'name'             => $name,
                 'posts_per_page'   => 1,
                 'no_found_rows'    => true,
                 'suppress_filters' => true,
             ]);
-
-            [$kanji, $hiragana, $korean, $level] = $item;
 
             $filtered = wp_slash(
                 json_encode(
@@ -101,7 +103,7 @@ class MemoryCard implements Support
             $post = [
                 'post_content'          => '',
                 'post_content_filtered' => $filtered,
-                'post_name'             => implode('-', $item),
+                'post_name'             => $name,
                 'post_status'           => 'publish',
                 'post_type'             => KMC_CPT_CARD,
                 'post_title'            => $korean,

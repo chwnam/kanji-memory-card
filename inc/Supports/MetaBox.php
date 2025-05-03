@@ -3,6 +3,7 @@
 namespace Chwnam\KanjiMemoryCard\Supports;
 
 use Bojaghi\Contract\Support;
+use WP_Post;
 
 class MetaBox implements Support
 {
@@ -15,17 +16,25 @@ class MetaBox implements Support
         add_meta_box('kmc-tag-' . KMC_TAX_LEVEL, 'Level', [$this, 'levelMetaBox'], null, 'side');
     }
 
-    public function levelMetaBox(): void
+    public function levelMetaBox(WP_Post $post): void
     {
-        $levels = get_terms(
+        echo kmcTmpl()->template(
+            'admin-meta-level',
             [
-                'taxonomy'   => KMC_TAX_LEVEL,
-                'hide_empty' => false,
-                'orderby'    => 'name',
-                'order'      => 'ASC',
+                'levels' => get_terms(
+                    [
+                        'taxonomy'   => KMC_TAX_LEVEL,
+                        'hide_empty' => false,
+                        'orderby'    => 'name',
+                        'order'      => 'ASC',
+                    ],
+                ),
+                'values' => wp_get_object_terms(
+                    $post->ID,
+                    KMC_TAX_LEVEL,
+                    ['fields' => 'ids'],
+                ),
             ],
         );
-
-        echo kmcTmpl()->template('admin-meta-level', ['levels' => $levels]);
     }
 }
