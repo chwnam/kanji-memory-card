@@ -24,7 +24,8 @@
         "bojaghi/custom-posts": "^1.0",
         "bojaghi/custom-taxonomies": "^1.0",
         "bojaghi/template": "^1.0",
-        "bojaghi/admin-ajax": "^1.0"
+        "bojaghi/admin-ajax": "^1.0",
+        "bojaghi/custom-tables": "^1.0"
     },
     "scripts": {
     },

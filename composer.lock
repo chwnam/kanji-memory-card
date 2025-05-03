@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b47763932c760554c66a00be620014b3",
+    "content-hash": "5e75e365b50f2786b2bbbe9ff8a33587",
     "packages": [
         {
             "name": "bojaghi/admin-ajax",
@@ -183,6 +183,54 @@
                 "source": "https://github.com/bojaghi/custom-posts/tree/1.0.2"
             },
             "time": "2025-04-19T18:38:39+00:00"
+        },
+        {
+            "name": "bojaghi/custom-tables",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bojaghi/custom-tables.git",
+                "reference": "9831ac5a7f17ad0d4ece7963f3c465d0f03430a9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bojaghi/custom-tables/zipball/9831ac5a7f17ad0d4ece7963f3c465d0f03430a9",
+                "reference": "9831ac5a7f17ad0d4ece7963f3c465d0f03430a9",
+                "shasum": ""
+            },
+            "require": {
+                "bojaghi/contract": "^1.1",
+                "bojaghi/helper": "^1.1",
+                "php": ">=8.0"
+            },
+            "require-dev": {
+                "bojaghi/wp-tests": "^1.1",
+                "phpunit/phpunit": "^9",
+                "yoast/phpunit-polyfills": "^4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Bojaghi\\CustomTables\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "changwoo",
+                    "email": "ep6tri@hotmail.com"
+                }
+            ],
+            "description": "커스텀 테이블을 위한 보자기 유틸리티.",
+            "homepage": "https://github.com/bojaghi/custom-tables",
+            "support": {
+                "issues": "https://github.com/bojaghi/custom-tables/issues",
+                "source": "https://github.com/bojaghi/custom-tables/tree/1.0.0"
+            },
+            "time": "2025-05-02T22:50:17+00:00"
         },
         {
             "name": "bojaghi/custom-taxonomies",
