@@ -70,7 +70,7 @@ return [
             'capability_type'                 => 'post',
             'capabilities'                    => [],
             'map_meta_cap'                    => true,
-            'supports'                        => ['title'],
+            'supports'                        => false,
             'register_meta_box_cb'            => null,
             'taxonomies'                      => [],
             'has_archive'                     => false,

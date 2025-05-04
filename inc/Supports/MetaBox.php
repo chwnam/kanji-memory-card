@@ -13,7 +13,7 @@ class MetaBox implements Support
         remove_meta_box('tagsdiv-' . KMC_TAX_LEVEL, null, 'side');
 
         // Add our metaboxes.
-        add_meta_box('kmc-tag-' . KMC_TAX_LEVEL, 'Level', [$this, 'levelMetaBox'], null, 'side');
+        // add_meta_box('kmc-tag-' . KMC_TAX_LEVEL, 'Level', [$this, 'levelMetaBox'], null, 'side');
     }
 
     public function levelMetaBox(WP_Post $post): void

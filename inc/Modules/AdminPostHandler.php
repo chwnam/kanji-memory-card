@@ -19,8 +19,8 @@ class AdminPostHandler implements Module
     #[NoReturn]
     public function importCards(): void
     {
-        if (!isset($_FILES['csv_file'])) {
-            wp_die('No file uploaded.');
+        if (empty($_FILES['csv_file']['tmp_name'])) {
+            wp_die('No file uploaded.', 'Error', ['back_link' => true]);
         }
 
         $result = kmcCall(Memorycard::class, 'importCards', [$_FILES['csv_file']['tmp_name']]);

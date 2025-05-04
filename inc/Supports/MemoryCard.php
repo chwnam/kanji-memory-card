@@ -4,6 +4,7 @@ namespace Chwnam\KanjiMemoryCard\Supports;
 
 use Bojaghi\Contract\Support;
 use Bojaghi\ViteScripts\ViteScript;
+use Chwnam\KanjiMemoryCard\Objects\Card;
 use WP_Error;
 use WP_Query;
 
@@ -36,7 +37,7 @@ class MemoryCard implements Support
             wp_send_json_error('No cards.');
         }
 
-        $content = json_decode($q->posts[0]->post_content_filtered, true) ?: [];
+        $content = Card::decodeContent($q->posts[0]->post_content);
 
         // random question
         // random answer
@@ -71,7 +72,7 @@ class MemoryCard implements Support
             if (!count($row)) {
                 continue;
             }
-            $row = array_map('trim', $row);
+            $row = array_map('sanitize_text_field', $row);
             if ($row[0] && $row[1] && $row[2] && $row[3]) {
                 $items[] = $row;
             }
@@ -82,7 +83,7 @@ class MemoryCard implements Support
         foreach ($items as $item) {
             [$kanji, $hiragana, $korean, $level] = $item;
 
-            $name = "$kanji-$korean";
+            $name = $kanji;
 
             $query = new WP_Query([
                 'post_type'        => KMC_CPT_CARD,
@@ -93,20 +94,17 @@ class MemoryCard implements Support
                 'suppress_filters' => true,
             ]);
 
-            $filtered = wp_slash(
-                json_encode(
-                    compact('kanji', 'hiragana', 'korean'),
-                    JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES,
-                ),
-            );
+            // Add plain text for searching in the dashboard.
+            $content  = "$kanji $hiragana $korean";
+            $filtered = wp_slash(Card::encodeContent($kanji, $hiragana, $korean));
 
             $post = [
-                'post_content'          => '',
+                'post_content'          => $content,
                 'post_content_filtered' => $filtered,
                 'post_name'             => $name,
                 'post_status'           => 'publish',
                 'post_type'             => KMC_CPT_CARD,
-                'post_title'            => $korean,
+                'post_title'            => '',
             ];
 
             if (1 === $query->post_count) {
@@ -138,7 +136,7 @@ class MemoryCard implements Support
             [
                 'id'            => 'kmc-memory-card',
                 'class'         => 'kmc kmc-memory-card',
-                'inner_content' => '이 텍스트가 보인다면 리액트 코드가 제대로 실행되지 않았기 때문입니다.',
+                'inner_content' => '',
             ],
         );
 
