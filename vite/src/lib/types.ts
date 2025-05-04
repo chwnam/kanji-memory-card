@@ -5,10 +5,10 @@ type Action<T = {}> = T & {
 
 type Card = {
     id: number
-    question: string
     kanji: string
     hiragana: string
     korean: string
+    levels: string[]
 }
 
 type Result = boolean | null

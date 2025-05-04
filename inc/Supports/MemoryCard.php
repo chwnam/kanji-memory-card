@@ -37,17 +37,10 @@ class MemoryCard implements Support
             wp_send_json_error('No cards.');
         }
 
-        $content = Card::decodeContent($q->posts[0]->post_content);
-
-        // random question
-        // random answer
-        $data = [
-            'id'       => $q->posts[0]->ID,
-            'question' => $q->posts[0]->post_title,
-            'kanji'    => $content['kanji'] ?? '',
-            'hiragana' => $content['hiragana'] ?? '',
-            'korean'   => $content['korean'] ?? '',
-        ];
+        $data = Card::get($q->posts[0]->ID);
+        if (!$data) {
+            wp_send_json_error('Cannot get card data.');
+        }
 
         wp_send_json_success($data);
     }

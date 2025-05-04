@@ -74,12 +74,16 @@ export default function MemoryCard(props: Props) {
                     )}
                 >
                     <span className="ms-2 mt-1 text-[0.75em]">{index + 1}/{cards.length}</span>
-                    {isAvailable() && (<span className="me-2 mt-1 text-[0.75em]">#{cards[index].id}</span>)}
+                    {isAvailable() && (
+                        <span
+                            className="me-2 mt-1 text-[0.75em]"
+                        >#{cards[index].id} | {cards[index].levels.join(', ')}</span>
+                    )}
                 </div>
                 {isAvailable() ? (
                     <>
                         <CardContent className={cn('card-question', flip && 'hidden')}>
-                            <Question text={cards[index].question} />
+                            <Question text={cards[index].korean} />
                         </CardContent>
                         <CardContent className={cn('card-answer', flip || 'hidden')}>
                             <Answer card={cards[index]} />
@@ -196,7 +200,7 @@ export default function MemoryCard(props: Props) {
                                             {null === flu ? '❓' : (flu ? '⭕' : '❌')}
                                         </span>
                                         <span className="ms-2">
-                                            #{card.id} {card.question}
+                                            #{card.id} {card.korean}
                                         </span>
                                     </li>
                                 )
