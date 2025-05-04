@@ -1,4 +1,4 @@
-import {useCallback, useEffect, useState} from 'react'
+import {useCallback, useEffect, useRef, useState} from 'react'
 import {Action, Card, Result} from '../lib/types.ts'
 import {cn} from '../lib/utils.ts'
 import Answer from './card/answer.tsx'
@@ -14,8 +14,18 @@ export type Props = {
     },
     initial: {
         cards: Card[]
+        level: Level
         results: Result[]
+        tier: Tier
     },
+}
+
+type Level = '' | 'N1' | 'N2' | 'N3' | 'N4' | 'N5'
+type Tier = '' | '1' | '2' | '3' | '4' | '5'
+
+type LevelsTier = {
+    level: Level
+    tier: Tier
 }
 
 export default function MemoryCard(props: Props) {
@@ -27,21 +37,37 @@ export default function MemoryCard(props: Props) {
         },
         initial: {
             cards: initialCards,
+            level: initialLevel,
+            tier: initialTier,
         },
     } = props
 
     const [flip, setFlip] = useState(false),
         [index, setIndex] = useState<number>(initialCards.length ? 0 : -1),
         [cards, setCards] = useState<Card[]>(initialCards || []),
+        [levelTier, setLevelTier] = useState<LevelsTier>({
+            level: initialLevel || '',
+            tier: initialTier || '',
+        }),
         [results, setResults] = useState<Result[]>([]),
         [isSubmit, setIsSubmit] = useState<boolean>(false)
 
+    const level = useRef<HTMLSelectElement>(null),
+        tier = useRef<HTMLSelectElement>(null)
+
     const fetchNext = useCallback(() => {
-        return getCard(ajaxUrl, getCardAction, cards.map((card) => card.id))
+        return getCard(ajaxUrl, getCardAction, {
+            exclude: cards.map((card) => card.id),
+            level: levelTier.level,
+            tier: levelTier.tier,
+        })
     }, [cards, index])
 
     const isAvailable = useCallback(() => {
-        return cards.length > 0 && -1 < index && index < cards.length
+        return (
+            cards.length > 0 && -1 < index && index < cards.length &&
+            levelTier.level !== '' && levelTier.tier !== ''
+        )
     }, [cards, index])
 
     const isMarkable = useCallback(() => {
@@ -53,17 +79,74 @@ export default function MemoryCard(props: Props) {
     }, [results])
 
     useEffect(() => {
-        if (!cards.length) {
+        if (levelTier.level !== '' && levelTier.tier !== '') {
+            if (cards.length > 0 && !confirm('다시 시작할까요?')) {
+                return
+            }
+            setCards([])
             fetchNext().then((card) => {
                 setCards([...cards, card])
                 setResults([...results, null])
                 setIndex(0)
             })
         }
-    }, [])
+    }, [levelTier])
 
     return (
         <div className="memory-card-app">
+            <div className="card-top-actions flex items-center mb-4">
+                <label
+                    className="text-sm"
+                    htmlFor="card-level-select"
+                >
+                    레벨 선택
+                </label>
+                <select
+                    id="card-level-select"
+                    className="text-sm ms-2  border border-black rounded-sm px-4 py-2"
+                    ref={level}
+                >
+                    <option value=""></option>
+                    <option value="n1">N1</option>
+                    <option value="n2">N2</option>
+                    <option value="n3">N3</option>
+                    <option value="n4">N4</option>
+                    <option value="n5">N5</option>
+                </select>
+                <label
+                    className="text-sm ms-4"
+                    htmlFor="tier-select"
+                >
+                    티어 선택
+                </label>
+                <select
+                    id="tier-select"
+                    className="text-sm ms-2 border border-black rounded-sm px-4 py-2"
+                    ref={tier}
+                >
+                    <option value=""></option>
+                    <option value="1">1-티어</option>
+                    <option value="2">2-티어</option>
+                    <option value="3">3-티어</option>
+                    <option value="4">4-티어</option>
+                    <option value="5">5-티어</option>
+                </select>
+                <Button
+                    className="ms-2"
+                    type="button"
+                    onClick={() => {
+                        if (level.current && tier.current) {
+                            setLevelTier({
+                                level: level.current.value as Level,
+                                tier: tier.current.value as Tier,
+                            })
+                        }
+                    }}
+                >
+                    시작
+                </Button>
+            </div>
+
             <div className="card-container border-2 border-black rounded-sm">
                 <div
                     className={cn(
@@ -90,7 +173,7 @@ export default function MemoryCard(props: Props) {
                         </CardContent>
                     </>
                 ) : (
-                    <CardContent></CardContent>
+                    <CardContent>레벨과 티어를 선택</CardContent>
                 )}
                 <section className="card-bottom border-t border-black">
                     <div className="card-buttons flex justify-between mx-28 max-[520px]:mx-12 max-[420px]:mx-4 my-4">
@@ -216,11 +299,20 @@ export default function MemoryCard(props: Props) {
     )
 }
 
-async function getCard(ajaxUrl: string, action: Action, exclude: number[] = []): Promise<Card> {
+
+type GetCardArgs = {
+    exclude?: number[]
+    level?: Level
+    tier?: Tier
+}
+
+async function getCard(ajaxUrl: string, action: Action, args: GetCardArgs = {}): Promise<Card> {
     const params = new URLSearchParams()
     params.append('action', action.action)
     params.append('nonce', action.nonce)
-    params.append('exclude', exclude.join(','))
+    params.append('exclude', args.exclude?.join(',') ?? '')
+    params.append('level', args.level ?? '')
+    params.append('tier', args.tier ?? '')
 
     const r = await fetch(`${ajaxUrl}?${params}`, {
         method: 'GET',
