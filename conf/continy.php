@@ -27,6 +27,7 @@ return [
             dirname(KMC_MAIN) . '/conf/admin-post.php', // configuration
             $continy,                                   // container interface
         ],
+        'bojaghi/cleanPages'   => "$conf/clean-pages.php",
         'bojaghi/customPosts'  => "$conf/custom-posts.php",
         'bojaghi/customTables' => [
             'conf'      => [
@@ -54,6 +55,7 @@ return [
         // Bojaghi
         'bojaghi/adminAjax'    => Bojaghi\AdminAjax\AdminAjax::class,
         'bojaghi/adminPost'    => Bojaghi\AdminAjax\AdminPost::class,
+        'bojaghi/cleanPages'   => Bojaghi\CleanPages\CleanPages::class,
         'bojaghi/customPosts'  => Bojaghi\CustomPosts\CustomPosts::class,
         'bojaghi/customTables' => Bojaghi\CustomTables\CustomTables::class,
         'bojaghi/customTax'    => Bojaghi\Tax\CustomTaxonomies::class,
@@ -72,6 +74,7 @@ return [
             // Bojaghi-side
             'bojaghi/adminAjax',
             'bojaghi/adminPost',
+            'bojaghi/cleanPages',
             'bojaghi/customTables',
             // Plugin-side
             'kmc/activation',

@@ -197,6 +197,48 @@ class MemoryCard implements Support
         return $output;
     }
 
+    public function renderV2(ViteScript $vs): void
+    {
+        $vs->add('kmc-kanji-memory-card-v2', 'src/kanji-memory-card-v2.tsx')
+           ->vars('kmcMemoryCard', [
+               'ajaxUrl' => admin_url('admin-ajax.php'),
+               'actions' => [
+                   'getCard'       => [
+                       'action' => 'kmc_get_card',
+                       'nonce'  => wp_create_nonce('kmc_get_card')
+                   ],
+                   'setQuizResult' => [
+                       'action' => 'kmc_set_quiz_result',
+                       'nonce'  => wp_create_nonce('kmc_set_quiz_result'),
+                   ]
+               ],
+               'initial' => [
+                   'cards'   => [],
+                   'results' => [],
+                   'level'   => '',
+                   'tier'    => 0,
+               ],
+           ])
+        ;
+
+        $output = kmcTmpl()->template(
+            'react-root',
+            [
+                'id'            => 'kmc-memory-card',
+                'class'         => 'kmc kmc-memory-card',
+                'inner_content' => 'production' === wp_get_environment_type() ? '' : 'Standby, run `dev`.',
+            ],
+        );
+
+        echo wp_kses($output, [
+            'div' => [
+                'id'            => true,
+                'class'         => true,
+                'data-kmc-root' => true,
+            ]
+        ]);
+    }
+
     public function setQuizResult(Score $score): void
     {
         $userId = get_current_user_id();
