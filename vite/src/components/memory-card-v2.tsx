@@ -2,20 +2,10 @@ import {cn} from '../lib/utils.ts'
 
 export default function MemoryCardV2() {
     return (
-        <>
-            카드에 필요한 유저 인터페이스 목록
-            <ul>
-                <li>- 단어 정답 스위치 카드</li>
-                <li>- 판정 UI</li>
-                <li>- 레벨 선택 (N1~5)</li>
-                <li>- 티어 선택 (1~5)</li>
-                <li>- 단어 조작 UI</li>
-                <li>- 현재 단어 테스트 과정</li>
-                <li>- 내 티어별 공부 상황</li>
-            </ul>
-
-            <div className="w-full">
+        <main className="w-full">
+            <div id="card--wrapper">
                 <h1
+                    id="card--title"
                     className={cn(
                     )}
                 >
@@ -23,17 +13,65 @@ export default function MemoryCardV2() {
                 </h1>
                 <div
                     id="card--container"
-                    className=""
+                    className={cn(
+                    )}
                 >
-                    <section id="card--question-side">
-                        Card question side
-                    </section>
-                    <section id="card--answer-side">
-                        Card answer side
-                    </section>
+                    <div
+                        id="card--upper-indicator"
+                        className={cn(
+                        )}
+                    >
+                    </div>
+                    <div id="card--sides">
+                        <section id="card--question-side">
+                            Card question side
+                        </section>
+                        <section id="card--answer-side">
+                            Card answer side
+                        </section>
+                    </div>
+                    <div
+                        id="card--bottom-controls"
+                    >
+                        <div>
+                            <button>이전 단어</button>
+                            <button>정답</button>
+                            <button>다음 단어</button>
+                        </div>
+                        <div>
+                            <h3>이 단어를 맞추셨나요?</h3>
+                            <div>
+                                <button>
+                                    아니오
+                                </button>
+                                <button>
+                                    네
+                                </button>
+                            </div>
+                            <p>
+                                주의하세요! 한번만 입력 가능합니다.
+                            </p>
+                        </div>
+                    </div>
                 </div>
+                {/* #card--container */}
+
+                <div id="card--used">
+                    <h2
+                        className={cn(
+                        )}
+                    >
+                        학습한 카드
+                    </h2>
+                    <ul>
+                    </ul>
+                    <div>
+                        <button>연습 그만하기</button>
+                    </div>
+                </div>
+                {/* #card-used */}
             </div>
-            <input type="checkbox" value="night" className="toggle theme-controller" />
-        </>
+            {/* #card--wrapper */}
+        </main>
     )
 }
