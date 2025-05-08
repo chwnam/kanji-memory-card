@@ -57,16 +57,16 @@
         },
         {
             "name": "bojaghi/clean-pages",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bojaghi/clean-pages.git",
-                "reference": "3d9230c425da3257eb7975fc2fbe6f33dab5e45b"
+                "reference": "a658cb5fdce76947224851f05a3202c4e8dbcd0c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bojaghi/clean-pages/zipball/3d9230c425da3257eb7975fc2fbe6f33dab5e45b",
-                "reference": "3d9230c425da3257eb7975fc2fbe6f33dab5e45b",
+                "url": "https://api.github.com/repos/bojaghi/clean-pages/zipball/a658cb5fdce76947224851f05a3202c4e8dbcd0c",
+                "reference": "a658cb5fdce76947224851f05a3202c4e8dbcd0c",
                 "shasum": ""
             },
             "require": {
@@ -93,9 +93,9 @@
             "homepage": "https://github.com/bojaghi/clean-pages",
             "support": {
                 "issues": "https://github.com/bojaghi/clean-pages/issues",
-                "source": "https://github.com/bojaghi/clean-pages/tree/1.0.0"
+                "source": "https://github.com/bojaghi/clean-pages/tree/1.0.1"
             },
-            "time": "2025-05-05T14:03:11+00:00"
+            "time": "2025-05-06T21:17:13+00:00"
         },
         {
             "name": "bojaghi/continy",
@@ -408,16 +408,16 @@
         },
         {
             "name": "bojaghi/vite-scripts",
-            "version": "1.1.0",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bojaghi/vite-scripts.git",
-                "reference": "9f3b4f4b782d73b939f64ebf86bef1adddd2bf8d"
+                "reference": "6b41a923f389e2f1df919acbb6b8fc6f78255f9f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bojaghi/vite-scripts/zipball/9f3b4f4b782d73b939f64ebf86bef1adddd2bf8d",
-                "reference": "9f3b4f4b782d73b939f64ebf86bef1adddd2bf8d",
+                "url": "https://api.github.com/repos/bojaghi/vite-scripts/zipball/6b41a923f389e2f1df919acbb6b8fc6f78255f9f",
+                "reference": "6b41a923f389e2f1df919acbb6b8fc6f78255f9f",
                 "shasum": ""
             },
             "require": {
@@ -442,9 +442,9 @@
             "homepage": "https://github.com/bojaghi/vite-scripts",
             "support": {
                 "issues": "https://github.com/bojaghi/vite-scripts/issues",
-                "source": "https://github.com/bojaghi/vite-scripts/tree/1.1.0"
+                "source": "https://github.com/bojaghi/vite-scripts/tree/1.1.1"
             },
-            "time": "2025-01-14T15:56:58+00:00"
+            "time": "2025-05-06T21:02:44+00:00"
         },
         {
             "name": "psr/container",
