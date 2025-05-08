@@ -13,7 +13,7 @@ return [
         'condition' => fn($name) => is_page($name),
         'before'    => function () {
             add_filter('language_attributes', function (string $output): string {
-                return $output . ' data-theme="dark"';
+                return $output . ' data-theme="cupcake"';
             }, 10, 2);
         },
         'body'      => fn() => kmcCall(MemoryCard::class, 'renderV2'),
