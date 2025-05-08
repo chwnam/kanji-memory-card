@@ -47,6 +47,7 @@ return [
         ],
         'bojaghi/vite'         => [[
             'distBaseUrl'  => plugin_dir_url(KMC_MAIN) . 'dist',
+            'i18n'         => false,
             'isProd'       => 'production' === wp_get_environment_type(),
             'manifestPath' => plugin_dir_path(KMC_MAIN) . 'dist/.vite/manifest.json'
         ]],
