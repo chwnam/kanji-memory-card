@@ -1,10 +1,10 @@
 <?php
 
-namespace Chwnam\KanjiMemoryCard\Modules;
+namespace Chwnam\KMC\Modules;
 
 use Bojaghi\Contract\Module;
-use Chwnam\KanjiMemoryCard\Supports\SettingsPage;
-use function Chwnam\KanjiMemoryCard\getSetupMessage;
+use Chwnam\KMC\Supports\SettingsPage;
+use function Chwnam\KMC\getSetupMessage;
 
 class AdminMenu implements Module
 {

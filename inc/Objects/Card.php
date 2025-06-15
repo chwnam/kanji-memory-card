@@ -1,9 +1,9 @@
 <?php
 
-namespace Chwnam\KanjiMemoryCard\Objects;
+namespace Chwnam\KMC\Objects;
 
 use Bojaghi\Helper\Facades;
-use Chwnam\KanjiMemoryCard\Modules\PostMeta;
+use Chwnam\KMC\Modules\PostMeta;
 use WP_Post;
 
 class Card

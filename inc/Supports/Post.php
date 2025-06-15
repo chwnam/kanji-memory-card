@@ -1,13 +1,13 @@
 <?php
 
-namespace Chwnam\KanjiMemoryCard\Supports;
+namespace Chwnam\KMC\Supports;
 
 use Bojaghi\Contract\Support;
 use Bojaghi\Helper\Facades;
 use Bojaghi\Template\Template;
-use Chwnam\KanjiMemoryCard\Modules\PostMeta;
-use Chwnam\KanjiMemoryCard\Objects\Card;
-use Chwnam\KanjiMemoryCard\Walkers\CourseWalker;
+use Chwnam\KMC\Modules\PostMeta;
+use Chwnam\KMC\Objects\Card;
+use Chwnam\KMC\Walkers\CourseWalker;
 use WP_Error;
 use WP_Post;
 use WP_Query;

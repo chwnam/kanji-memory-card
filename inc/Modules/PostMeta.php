@@ -1,6 +1,6 @@
 <?php
 
-namespace Chwnam\KanjiMemoryCard\Modules;
+namespace Chwnam\KMC\Modules;
 
 use Bojaghi\Contract\Module;
 use Bojaghi\Fields\Meta\Meta;

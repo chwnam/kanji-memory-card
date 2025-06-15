@@ -1,13 +1,13 @@
 <?php
 
-namespace Chwnam\KanjiMemoryCard\Modules;
+namespace Chwnam\KMC\Modules;
 
 use Bojaghi\Contract\Module;
-use Chwnam\KanjiMemoryCard\Supports\Post;
-use Chwnam\KanjiMemoryCard\Supports\Score;
+use Chwnam\KMC\Supports\Post;
+use Chwnam\KMC\Supports\Score;
 use JetBrains\PhpStorm\NoReturn;
 use WP_Query;
-use function Chwnam\KanjiMemoryCard\setSetupMessage;
+use function Chwnam\KMC\setSetupMessage;
 
 class AdminPostHandler implements Module
 {

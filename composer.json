@@ -1,12 +1,12 @@
 {
-    "name": "chwnam/kmc",
-    "description": "Kanji memory card",
+    "name": "chwnam/kmc-memory-card",
+    "description": "워드프레스 플러그인으로 만든 학습과 기억을 위한 카드 시스템",
     "homepage": "https://github.com/chwnam/kanji-memory-card",
     "type": "wordpress-plugin",
     "license": "GPL-2.0-or-later",
     "autoload": {
         "psr-4": {
-            "Chwnam\\KanjiMemoryCard\\": "inc/"
+            "Chwnam\\KMC\\": "inc/"
         },
         "files": [
             "inc/functions.php"
@@ -27,7 +27,7 @@
         "bojaghi/admin-ajax": "^1.0",
         "bojaghi/custom-tables": "^1.0",
         "bojaghi/vite-scripts": "^1.1",
-        "bojaghi/clean-pages": "^1.0",
+        "bojaghi/clean-pages": "^1.1",
         "bojaghi/fields": "^1.0",
         "bojaghi/helper": "^1.2"
     },

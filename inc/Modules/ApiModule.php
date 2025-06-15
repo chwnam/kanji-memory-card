@@ -1,10 +1,10 @@
 <?php
 
-namespace Chwnam\KanjiMemoryCard\Modules;
+namespace Chwnam\KMC\Modules;
 
 use Bojaghi\Contract\Module;
-use Chwnam\KanjiMemoryCard\Supports\ApiParamFilter as F;
-use Chwnam\KanjiMemoryCard\Supports\CardSupport;
+use Chwnam\KMC\Supports\ApiParamFilter as F;
+use Chwnam\KMC\Supports\CardSupport;
 use WP_Error;
 use WP_REST_Request;
 use WP_REST_Response;

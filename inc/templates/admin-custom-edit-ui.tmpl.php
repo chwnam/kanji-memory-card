@@ -9,7 +9,7 @@
  */
 
 use Bojaghi\Template\Template;
-use Chwnam\KanjiMemoryCard\Walkers\CourseWalker;
+use Chwnam\KMC\Walkers\CourseWalker;
 
 if (!defined('ABSPATH')) {
     exit;

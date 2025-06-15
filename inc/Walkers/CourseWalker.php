@@ -1,6 +1,6 @@
 <?php
 
-namespace Chwnam\KanjiMemoryCard\Walkers;
+namespace Chwnam\KMC\Walkers;
 
 use Walker;
 

@@ -4,7 +4,7 @@
  */
 
 use Bojaghi\Continy\Continy;
-use Chwnam\KanjiMemoryCard\Modules;
+use Chwnam\KMC\Modules;
 
 if (!defined('ABSPATH')) {
     exit;
@@ -56,7 +56,6 @@ return [
     ],
     'bindings'  => [
         // Bojaghi
-        // 'bojaghi/adminAjax'        => Bojaghi\AdminAjax\AdminAjax::class,
         'bojaghi/adminPost'        => Bojaghi\AdminAjax\AdminPost::class,
         'bojaghi/cleanPages'       => Bojaghi\CleanPages\CleanPages::class,
         'bojaghi/customFields'     => Bojaghi\Fields\Modules\CustomFields::class,
@@ -66,7 +65,6 @@ return [
         'bojaghi/template'         => Bojaghi\Template\Template::class,
         'bojaghi/vite'             => Bojaghi\ViteScripts\ViteScript::class,
         // Plugin
-        'kmc/adminAjax'            => Modules\AdminAjaxHandler::class,
         'kmc/adminEdit'            => Modules\AdminEdit::class,
         'kmc/adminMenu'            => Modules\AdminMenu::class,
         'kmc/adminPost'            => Modules\AdminPostHandler::class,

@@ -49,7 +49,7 @@ namespace {
     }
 }
 
-namespace Chwnam\KanjiMemoryCard {
+namespace Chwnam\KMC {
     /**
      * 설정 업데이트 후 보이는 메시지를 저장
      *

@@ -1,11 +1,11 @@
 <?php
 
-namespace Chwnam\KanjiMemoryCard\Modules;
+namespace Chwnam\KMC\Modules;
 
 use Bojaghi\Contract\Module;
-use Chwnam\KanjiMemoryCard\Objects\Card;
-use Chwnam\KanjiMemoryCard\Supports\MetaBox;
-use Chwnam\KanjiMemoryCard\Supports\Post;
+use Chwnam\KMC\Objects\Card;
+use Chwnam\KMC\Supports\MetaBox;
+use Chwnam\KMC\Supports\Post;
 use WP_Post;
 use WP_Screen;
 

@@ -1,13 +1,13 @@
 <?php
 
-namespace Chwnam\KanjiMemoryCard\Supports;
+namespace Chwnam\KMC\Supports;
 
 use Bojaghi\Contract\Support;
 use Bojaghi\ViteScripts\MountNode;
 use Bojaghi\ViteScripts\ViteScript;
-use Chwnam\KanjiMemoryCard\Modules\ApiModule;
-use Chwnam\KanjiMemoryCard\Objects\Card;
-use Chwnam\KanjiMemoryCard\Supports\ApiParamFilter as F;
+use Chwnam\KMC\Modules\ApiModule;
+use Chwnam\KMC\Objects\Card;
+use Chwnam\KMC\Supports\ApiParamFilter as F;
 use WP_Error;
 
 class CardSupport implements Support

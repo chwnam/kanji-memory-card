@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.3.0
+
+- 플러그인 이름 수정: 'KMC 기억 카드' 또는 'KMC Memory Card'. K.M.C. (Kanji Memory Card)로 옛 형태는 남김.
+- 네임스페이스 수정
+- 로그인 처리
+
 ## 0.2.0
 
 - PHP 의존성 업데이트

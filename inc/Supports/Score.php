@@ -1,6 +1,6 @@
 <?php
 
-namespace Chwnam\KanjiMemoryCard\Supports;
+namespace Chwnam\KMC\Supports;
 
 use Bojaghi\Contract\Support;
 
