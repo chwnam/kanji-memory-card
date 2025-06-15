@@ -11,7 +11,7 @@ export default defineConfig({
         modulePreload: {
             polyfill: true,
         },
-        outDir: '../dist',
+        outDir: './dist',
         rollupOptions: {
             input: [
                 'src/v2/kanji-memory-card.tsx',

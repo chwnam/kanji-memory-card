@@ -1,8 +1,8 @@
 import Api from '@/v2/api'
 import useCardContext from '@/v2/components/hooks/use-card-context'
 import CardTemplate from '@/v2/components/parts/card-templates'
-import PracticeCard from '@/v2/components/parts/practice-card'
 import {ActionType} from '@/v2/lib/reducer'
+import {Card} from '@/v2/lib/types'
 import {cn} from '@/v2/lib/utils'
 import {useEffect, useRef, useState} from 'react'
 
@@ -56,13 +56,25 @@ export default function SectionPracticeCourse() {
                 .then(() => setCardCount(cardCount - 1))
         }
     }
+    const isIndexInRange = () => 0 <= index && index < allCards.length
+    const isJudgeable = () => index !== allCards.length - 1 && cardCount > 0 && 'system' !== template
+
+    let theCard: Card
+    let template: string
 
     // Effects
+    // 이 이펙트는 채점이 이뤄지는 경우메만 호출해야 함. 그렇지 않으면 초기 실행 때 tier, judges 둘다 카드를 불러옴
     useEffect(() => {
-        getNextCard()
-        setIndex(index + 1)
-    }, [course, judges])
+        if (judges.size > 0) {
+            getNextCard()
+            setIndex(index + 1)
+        }
+    }, [judges])
 
+    // 티어 변경이 일어날 때 이벡트
+    // - 카드 초기화
+    //   - 다음 카드 호출
+    //   - 학습 내역 초기화
     useEffect(() => {
         Api.V1.getNumCards(course, tier).then(({count}) => {
             setCardCount(count)
@@ -76,15 +88,30 @@ export default function SectionPracticeCourse() {
         })
     }, [tier])
 
-    if (tier < 1 || tier > 5) {
-        return <PracticeCard>티어가 올바르게 선택되지 않았습니다.</PracticeCard>
+    if (!(1 <= tier && tier <= 5)) {
+        theCard = {
+            id: 0,
+            question: '티어가 올바르게 선택되지 않았습니다.',
+            questionHint: '',
+            answer: '',
+            answerSupplement: '',
+            course: course,
+        }
+        template = 'system'
+    } else if (!isIndexInRange()) {
+        theCard = {
+            id: 0,
+            question: '다음 카드를 불러오는 중...',
+            questionHint: '',
+            answer: '',
+            answerSupplement: '',
+            course: course,
+        }
+        template = 'system'
+    } else {
+        theCard = allCards[index]
+        template = 'default'
     }
-
-    if (index < 0 || index > allCards.length - 1) {
-        return <PracticeCard>카드가 선택되지 않았습니다.</PracticeCard>
-    }
-
-    const theCard = allCards[index]
 
     return (
         <>
@@ -106,7 +133,7 @@ export default function SectionPracticeCourse() {
             <CardTemplate
                 card={theCard}
                 side={flip ? 'answer' : 'question'}
-                template={'default'}
+                template={template}
             />
 
             {/* Below-card area */}
@@ -128,6 +155,7 @@ export default function SectionPracticeCourse() {
                                 setIndex(index - 1)
                             }
                         }}
+                        type="button"
                     >
                         &laquo; 이전 단어
                     </button>
@@ -138,6 +166,7 @@ export default function SectionPracticeCourse() {
                         onTouchStart={flipCard}
                         onTouchEnd={unflipCard}
                         ref={flipButtonRef}
+                        type="button"
                     >
                         정답 토글
                     </button>
@@ -149,6 +178,7 @@ export default function SectionPracticeCourse() {
                                 setIndex(index + 1)
                             }
                         }}
+                        type="button"
                     >
                         다음 단어 &raquo;
                     </button>
@@ -162,15 +192,23 @@ export default function SectionPracticeCourse() {
                     <div className="mt-4 flex justify-center gap-x-2">
                         <button
                             className="btn w-1/2 btn-soft rounded-md"
-                            disabled={index !== allCards.length - 1 && cardCount > 0}
-                            onClick={() => {judgeCard(false)}}
+                            disabled={isJudgeable()}
+                            onClick={(e) => {
+                                e.preventDefault()
+                                judgeCard(false)
+                            }}
+                            type="button"
                         >
                             아니오
                         </button>
                         <button
                             className="btn w-1/2 btn-soft rounded-md"
-                            disabled={index !== allCards.length - 1 && cardCount > 0}
-                            onClick={() => {judgeCard(true)}}
+                            disabled={isJudgeable()}
+                            onClick={(e) => {
+                                e.preventDefault()
+                                judgeCard(true)
+                            }}
+                            type="button"
                         >
                             네
                         </button>

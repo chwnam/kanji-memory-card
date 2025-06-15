@@ -44,6 +44,7 @@ function reducer(prevState: State, action: Action): State {
             return {
                 ...prevState,
                 allCards: [],
+                judges: new Map(),
             }
 
         default:

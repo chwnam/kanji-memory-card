@@ -1,3 +1,4 @@
+import CardSystem from '@/v2/components/parts/card-templates/card-system'
 import CardDefault from './card-default'
 import {CardTemplateProps} from './types'
 
@@ -6,8 +7,10 @@ const CardTemplate = (props: CardTemplateProps) => {
 
     switch (template) {
         case 'default':
-        default:
             return <CardDefault {...props} />
+
+        case 'system':
+            return <CardSystem {...props} />
     }
 }
 

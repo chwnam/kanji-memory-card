@@ -16,7 +16,7 @@ const CardBase = forwardRef<HTMLDivElement, Props>((props, ref) => {
         >
             <section
                 className={cn(
-                    'w-full h-[320px]',
+                    'w-full h-[240px]',
                     'flex justify-center items-center',
                     className,
                 )}
